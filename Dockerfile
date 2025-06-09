@@ -37,4 +37,5 @@ RUN groupadd -g ${GID} appuser && \
     useradd -u ${UID} -g appuser -m appuser
 
 USER appuser
+RUN mkdir -p /var/www
 WORKDIR /var/www
