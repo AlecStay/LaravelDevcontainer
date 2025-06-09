@@ -2,7 +2,7 @@
   "name": "Laravel + Postgres + PHPMyAdmin",
   "dockerComposeFile": "../docker-compose.yml",
   "service": "app",
-  "workspaceFolder": "/var/www",
+  "workspaceFolder": "/workspaces/shiny-journey",
   "customizations": {
     "vscode": {
       "extensions": [
