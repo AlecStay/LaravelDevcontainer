@@ -1,0 +1,53 @@
+version: "3.8"
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: laravel_app
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/var/www
+    depends_on:
+      - postgres
+    command: php artisan serve --host=0.0.0.0 --port=8000
+    networks:
+      - laravel
+    
+  postgres:
+    image: postgres:latest
+    container_name: laravel_postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: laravel
+      POSTGRES_PASSWORD: secret
+      POSTGRES_DB: laravel_db
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    networks:
+      - laravel
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: laravel_phpmyadmin
+    restart: unless-stopped
+    ports:
+      - "8080:80"
+    environment:
+      PMA_HOST: postgres
+      PMA_USER: laravel
+      PMA_PASSWORD: secret
+    depends_on:
+      - postgres
+    networks:
+      - laravel
+
+# ⬇️ Deben estar fuera de "services", bien indentados
+volumes:
+  db_data:
+    driver: local
+
+networks:
+  laravel:

@@ -1,0 +1,22 @@
+{
+  "name": "Laravel + Postgres + PHPMyAdmin",
+  "dockerComposeFile": "../docker-compose.yml",
+  "service": "app",
+  "workspaceFolder": "/var/www",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "xdebug.php-pack",
+        "esbenp.prettier-vscode",
+        "dbaeumer.vscode-eslint",
+        "bmewburn.vscode-intelephense-client",
+        "naumovs.color-highlight"
+      ],
+      "settings": {
+        "terminal.integrated.defaultProfile.linux": "bash"
+      }
+    }
+  },
+  "remoteUser": "appuser",
+  "postCreateCommand": "composer install || true"
+}
