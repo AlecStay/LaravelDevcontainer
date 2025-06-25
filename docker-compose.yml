@@ -1,4 +1,5 @@
-version: "3.8"
+# docker-compose.yml
+version: "3.8" # ¡Esta línea debe estar al inicio y sin sangría!
 
 services:
   app:
@@ -15,7 +16,7 @@ services:
     command: php artisan serve --host=0.0.0.0 --port=8000
     networks:
       - laravel
-    
+
   postgres:
     image: postgres:latest
     container_name: laravel_postgres
@@ -44,10 +45,11 @@ services:
     networks:
       - laravel
 
-# ⬇️ Deben estar fuera de "services", bien indentados
+# Estas secciones deben estar al mismo nivel que "services" y "version"
 volumes:
   db_data:
     driver: local
 
 networks:
   laravel:
+    driver: bridge # Es importante especificar el driver de la red
